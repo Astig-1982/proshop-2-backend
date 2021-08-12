@@ -24,12 +24,23 @@ def getRoutes(request):
         '/api/products/<update>/<id>',
     ]
     return Response(routes)
-    ## return JsonResponse(routes, safe=False) this is the JsonResponse return if we are not using api views
+    ## return JsonResponse(routes, safe=False) -- the JsonResponse return if we are not using api views
 
 
 @api_view(['GET'])
 def allProducts(request):
     return Response(products)
+
+
+@api_view(['GET'])
+def getProduct(request, pk):
+    product = None
+    for i in products:
+        if i['_id'] == pk:
+            product = i 
+            break
+
+    return Response(product)
 
 """
 Below is the response we are getting from the above api view:
@@ -59,6 +70,7 @@ Below is the response we are getting from the above api view:
         "rating": 4.0,
         "numReviews": 8
     },
+    ...
 """
 
 """
