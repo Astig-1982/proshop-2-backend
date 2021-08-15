@@ -33,7 +33,8 @@ def allProducts(request):
 
 
 @api_view(['GET'])
-def getProduct(request, pk):
+def getProduct(request, pk): 
+    # the pk is being sent by the url in urls.py 
     product = None
     for i in products:
         if i['_id'] == pk:
