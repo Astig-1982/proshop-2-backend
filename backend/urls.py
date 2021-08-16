@@ -21,4 +21,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('base.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+"""
+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+The above comes together with MEDIA_URL set up from settings.py. 
+Here we are setting the url and tell it which folder to look into.
+"""

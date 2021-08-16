@@ -124,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/images/' # this also set up in urls.py. These are the images' urls and allow render the images
 
 # the below is added by me (Astig) in order to point to the root directory, and connected to static folder
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) ----- this is the same thing as the below, and I have used it in my Solid-Properties project
