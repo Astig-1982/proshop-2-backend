@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse #JsonResponse will render on the server the output of the view. This is instead of using html files to render the output
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .products import products #we import products list from products.py file
+from .models import Product
+from .serializers import ProductSerializer
 
 # Create your views here.
 
@@ -29,19 +32,17 @@ def getRoutes(request):
 
 @api_view(['GET'])
 def allProducts(request):
-    return Response(products)
+    products = Product.objects.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
-def getProduct(request, pk): 
-    # the pk is being sent by the url in urls.py 
-    product = None
-    for i in products:
-        if i['_id'] == pk:
-            product = i 
-            break
-
-    return Response(product)
+def getProduct(request, id): 
+    # the pk is being sent by the url in urls.py. It is passed in the url.py by the API call in the frontend: fetch(`/api/products/${this.props.match.params.id}`). This fetch call matches the url path in urls.py
+    product = get_object_or_404(Product, pk=id)
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
 
 """
 Below is the response we are getting from the above api view:
