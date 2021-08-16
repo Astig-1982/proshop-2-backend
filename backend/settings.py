@@ -124,6 +124,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/images/'
+
+# the below is added by me (Astig) in order to point to the root directory, and connected to static folder
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) ----- this is the same thing as the below, and I have used it in my Solid-Properties project
+STATICFILES_DIR = [
+    BASE_DIR / 'static'
+]
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') ---- this has been used in Solid-Properties
+MEDIA_ROOT = 'static/images' # this tells Django to look into the 'static' folder, and then go and look into the 'images' folder. Now, when we upload images from the Django Admin, the images will go directly into 'static/images' folder
+
 CORS_ALLOW_ALL_ORIGINS = True # this enable all HTTP to make request to the API
 
 # Below is the code if we want only certain HTTP to be able to make request to the API:
